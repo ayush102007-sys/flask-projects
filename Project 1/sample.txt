@@ -1,0 +1,15 @@
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        if not username or not password:
+            return "Missing username or password", 400
+
+        if username == "admin" and password == "123":
+            return render_template("submit.html", username=username)
+
+        return "Invalid username or password", 401
+
+    return render_template("login.html")
